@@ -2,7 +2,7 @@
 
 = Introduction =
 
-A brief explanation about TuMa-MinGW packages
+A brief explanation about the MinGW packages
 
 
 = Details =
