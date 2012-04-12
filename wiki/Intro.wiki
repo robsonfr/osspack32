@@ -9,7 +9,7 @@ A brief explanation about the MinGW packages
 
 To install you need all the three installers. While you can extract it with 7-zip you won't get hardlinked files (done via post-install) by doing so.
 
-Disclaimer: I'm NOT a unix/linux user in any way hence do not and will not have good knowledge about shell script and such therefor any "enhancements" should be viewed as "idea from noob perspective, done by noob and for use by noob"
+Disclaimer: _I'm NOT a unix/linux user in any way hence do not and will not have good knowledge about shell script and such therefor any "enhancements" should be viewed as "idea from noob perspective, done by noob and for use by noob". Noob in the sense that every windows users is a noob linux users and vice versa_
 
 It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities several concepts that differ from original MinGW are:
 
