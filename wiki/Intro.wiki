@@ -7,6 +7,8 @@ A brief explanation about the MinGW packages
 
 = Details =
 
+To install you need all the three installers. While you can extract it with 7-zip you won't get hardlinked files (done via post-install) by doing so.
+
 It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities several concept that differ from original MinGW are:
 
 - This packages intended to be as portable as possible avoiding *any* hardcoded path in configuration files, run anywhere (NTFS required for hardlinks), single user mode and relocatable.
