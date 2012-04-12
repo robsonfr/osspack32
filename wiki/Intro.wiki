@@ -9,16 +9,18 @@ A brief explanation about the MinGW packages
 
 To install you need all the three installers. While you can extract it with 7-zip you won't get hardlinked files (done via post-install) by doing so.
 
-It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities several concept that differ from original MinGW are:
+Disclaimer: I'm NOT a unix/linux user in any way hence do not and will not have good knowledge about shell script and such therefor any "enhancements" should be viewed as "idea from noob perspective, done by noob and for use by noob"
+
+It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities several concepts that differ from original MinGW are:
 
 - This packages intended to be as portable as possible avoiding *any* hardcoded path in configuration files, run anywhere (NTFS required for hardlinks), single user mode and relocatable.
 
 - Its GCC is not a result of build-bot, so it's not expected to be up-to-date, however the packages include a guide and all dependencies required to build/update compilers easily (assuming no new dependencies introduced).
 
-- Contain GCC that compatible with two most common GCC available: TDM64 and official MinGW32 and a customized GCC [mingw32s] tailored to my need.
+- Contain GCC that compatible with two most common GCC available: TDM64 and official MinGW32 plus a customized GCC [mingw32s] tailored to my need.
 
-- Those multiple GCCs are switchable using "source setgcc" command. Thus mean to be used simultaneously via "spawn" command. This is possible since only environment variables used to define which gcc and its settings (flags) and that no mountpoint used. There is Console2 to make simultaneous work more pleasant though via "spawn -console" command. "spawn" itself is a command to launch another console session with settings preserved.
+- Those multiple GCCs are switchable using "source setgcc" command. Thus meant to be used simultaneously via "spawn" command. This is possible since only environment variables used to define which gcc and its settings (flags) and no mountpoint used. There is Console2 to make simultaneous work more pleasant though via "spawn -console" command. "spawn" itself is a command to launch another console session with settings/path preserved.
 
-- One of important modification to its GCC is the more automated process of runtime (msvcrt) targeting. Instead of making custom specs file use following flags: -vcr70, -vcr71, -vcr80, -vcr90, -vcr100. For -vcr80 and -vcr90 an appropriate manifest will be automatically embedded on the fly (no need for M$ manifest tool) thus will not causing autoconf choked while doing conftest. -vcr70 and -vcr71 are not available for [mingw-w64].
+- One of important modification to its GCC is the more automated process of runtime (msvcrt) targeting. Instead of making custom specs file use following flags: -vcr70, -vcr71, -vcr80, -vcr90, -vcr100. For -vcr80 and -vcr90 an appropriate manifest will be automatically embedded on the fly (no need for M$ manifest tool) thus will not causing autoconf choked while doing conftest. -vcr70 and -vcr71 are not available for [mingw-w64]. My goal is to build python extensions properly without M$ compiler.
 
 to be continued...
