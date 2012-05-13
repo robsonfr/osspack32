@@ -11,16 +11,42 @@ To install you need all the three installers. While you can extract it with 7-zi
 
 Disclaimer: _I'm NOT a unix/linux user in any way hence do not and will not have good knowledge about shell script and such therefor any "enhancements" should be viewed as "idea from noob perspective, done by noob and for use by noob". Noob in the sense that every windows users is a noob linux users and vice versa_
 
-It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities several concepts that differ from original MinGW are:
+It's basically a MinGW build environment tailored to my needs, other than its numerous bundled utilities, several concepts that differ from original MinGW are:
 
-- This packages intended to be as portable as possible avoiding *any* hardcoded path in configuration files, run anywhere (NTFS required for hardlinks), single user mode and relocatable.
+- This packages intended to be as portable as possible avoiding *any* hardcoded path in configuration files, run anywhere (NTFS required for hardlinks) and run in single user mode (default: anonymous).
 
-- Its GCC is not a result of build-bot, so it's not expected to be up-to-date, however the packages include a guide and all dependencies required to build/update compilers easily (assuming no new dependencies introduced).
+- Its GCC is not a result of build-bot, so it's not expected to be up-to-date, however the packages include a guide and all dependencies required to build/update the bundled compilers easily (assuming no new dependencies introduced).
 
 - Contain GCC that compatible with two most common GCC available: TDM64 and official MinGW32 plus a customized GCC [mingw32s] tailored to my need.
 
-- Those multiple GCCs are switchable using "source setgcc" command. Thus meant to be used simultaneously via "spawn" command. This is possible since only environment variables used to define which gcc and its settings (flags) and no mountpoint used. There is Console2 to make simultaneous work more pleasant though via "spawn -console" command. "spawn" itself is a command to launch another console session with settings/path preserved.
+- Those multiple GCCs are switchable using "setgcc" command. Thus meant to be used simultaneously via "spawn" command. This is possible since only environment variables used to define which gcc and its settings (flags) and no mountpoint used.
 
-- One of important modification to its GCC is the more automated process of runtime (msvcrt) targeting. Instead of making custom specs file use following flags: -vcr70, -vcr71, -vcr80, -vcr90, -vcr100. For -vcr80 and -vcr90 an appropriate manifest will be automatically embedded on the fly (no need for M$ manifest tool) thus will not causing autoconf choked while doing conftest. -vcr70 and -vcr71 are not available for [mingw-w64]. My goal is to build python extensions properly without M$ compiler.
+- One of important modification to its GCC is the more automated process of runtime (msvcrt) targeting. Instead of making custom specs file use the following flags: -vcr70, -vcr71, -vcr80, -vcr90, -vcr100. For -vcr80 and -vcr90 an appropriate manifest will be automatically embedded on the fly (no need for M$ manifest tool) thus will not causing autoconf choked while doing conftest. -vcr70 and -vcr71 are not available for [mingw-w64]. My goal is to build python extensions properly without M$ compiler.
+
+Sevaral additional commands, flags and variables:
+
+commands
+browse: open explorer pointing to current folder
+junc: junction utility for Windows pre-Vista which lack of mklink
+setgcc: switch between bundled GCC or other GCC
+cmd //c mtall90.bat: embed msvcr90 manifest to all executables in current folder recursively. Useful when excutables already have resource file but no manifest in which gcc's auto-manifest will be discarded.
+cmd //c mtall80.bat: same but for msvcr80
+spawn: spawn new session with environment variables and current folder preserved
+spawn msys: spawn new session in MSYS development mode. Need addons installed
+spawnc: spawn cmd box
+spawnp: spawn powershell
+spawnw: spawn WMI console
+spawn -mintty: spawn with mintty console
+spawn -console: spawn with console2 console
+spawn -rxvt: spawn with rxvt console
+openw: force windows to use "open with..." dialog for the specified file
+gw: start grepwin for curent folder
+
+variables
+MULTILIB: when defined to "64", mingw-w64 and clang will switch into 64-bit cross-compiler
+PYMSYS: when defined to "1" and addons installed, msys-python used instead of native one
+
+flags
+-vcr70,-vcr71,-vcr80,-vcr90,-vcr100: target specific MSVCRT, generally used in CC/CXX variable e.g export CC="gcc -vcr90 -flto -fopenmp"
 
 to be continued...
