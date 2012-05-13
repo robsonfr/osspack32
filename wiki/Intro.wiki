@@ -46,7 +46,9 @@ variables
 MULTILIB: when defined to "64", mingw-w64 and clang will switch into 64-bit cross-compiler
 PYMSYS: when defined to "1" and addons installed, msys-python used instead of native one
 
+
 flags
 -vcr70,-vcr71,-vcr80,-vcr90,-vcr100: target specific MSVCRT, generally used in CC/CXX variable e.g export CC="gcc -vcr90 -flto -fopenmp"
+
 
 to be continued...
