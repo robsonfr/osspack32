@@ -1,0 +1,34 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+This explain how to add libraries into GCC.
+
+= Details =
+
+Currently there are many GCC variants available. Usually this is by exception handling difference. But different threading model and which pthread used can also cause incompatibility.
+
+The bundled GCCs are 3 different variants which have its own independent secondary system libraries.
+
+What is secondary system libraries?
+
+It's collection of frequently used libraries that is internally under GCC and pkg-config lookup a.k.a no need to define specific PKG_CONFIG_PATH, CPPFLAGS or LDFLAGS. The location is in $GCC_LOC/mingw where $GCC_LOC can be /mingw32 /mingw3s or /mingw-w64 depends which GCC currently active via setgcc.
+
+Secondary libraries are searched dead last (after primary system libraries when pkg-config not involved) and I personally recommended (whenever possible) to use static libraries only due to "dll hell". Primary libraries are the one located in $GCC_LOC/$GCC_TRI where winapi headers and crt located
+
+
+How to add your libxxx into?
+
+for autotools based package user can pass --prefix=$GCC_LOC/mingw so it installed correctly. Note that if a package require special configurator (or not using pkg-config) which installed later in $GCC_LOC/mingw/bin folder, you will need to move the script to $GCC_LOC/bin since $GCC_LOC/mingw/bin is not included in PATH enviroment. For non-autotooled package you will need to manually copy file appropriately (headers to mingw/include, libraries to mingw/lib)
+
+
+How to use it?
+
+Say you need to compile application against openal
+use:
+
+$CC $CFLAGS $(pkg-config --cflags openal) apps.c $LDFLAGS $(pkg-config --libs openal)
+
+
+How to override?
+
+When user define PKG_CONFIG_PATH, CPPFLAGS or LDFLAGS these flags/variable will have higher priority, for non pkg-config configurator use e.g. export PATH=/local/package/bin:$PATH
