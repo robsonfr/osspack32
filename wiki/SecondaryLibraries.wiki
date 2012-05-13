@@ -18,7 +18,7 @@ Secondary libraries are searched dead last (after primary system libraries when 
 
 How to add your libxxx into?
 
-for autotools based package user can pass --prefix=$GCC_LOC/mingw so it installed correctly. Note that if a package require special configurator (or not using pkg-config) which installed later in $GCC_LOC/mingw/bin folder, you will need to move the script to $GCC_LOC/bin since $GCC_LOC/mingw/bin is not included in PATH enviroment. For non-autotooled package you will need to manually copy file appropriately (headers to mingw/include, libraries to mingw/lib)
+for autotools based package user can pass --prefix=$GCC_LOC/mingw so it will installed correctly. Note that if a package require special configurator (or not using pkg-config) which installed later in $GCC_LOC/mingw/bin folder, you will need to move the script to $GCC_LOC/bin since $GCC_LOC/mingw/bin is not included in PATH enviroment. For non-autotooled package you will need to manually copy file appropriately (headers to mingw/include, libraries to mingw/lib)
 
 
 How to use it?
@@ -27,6 +27,10 @@ Say you need to compile application against openal
 use:
 
 $CC $CFLAGS $(pkg-config --cflags openal) apps.c $LDFLAGS $(pkg-config --libs openal)
+
+or in non pkg-config case, here against localization library:
+
+$CC $CFLAGS apps.c -lintl -liconv
 
 
 How to override?
