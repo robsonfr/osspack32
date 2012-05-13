@@ -27,6 +27,7 @@ Sevaral additional commands, flags and variables:
 
 commands
 browse: open explorer pointing to current folder
+
 junc: junction utility for Windows pre-Vista which lack of mklink
 setgcc: switch between bundled GCC or other GCC
 cmd //c mtall90.bat: embed msvcr90 manifest to all executables in current folder recursively. Useful when excutables already have resource file but no manifest in which gcc's auto-manifest will be discarded.
